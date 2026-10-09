@@ -1,91 +1,627 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navpreet Singh | Personal Portfolio</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-        }
+  <style>
+    :root {
+      --ink: #111526;
+      --muted: #667080;
+      --red: #b32330;
+      --red-soft: #fbeaec;
+      --navy: #151c31;
+      --line: #e8eaf0;
+    }
 
-        header {
-            background-color: #222;
-            color: white;
-            padding: 40px 20px;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        nav {
-            background-color: #444;
-            padding: 15px;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 15px;
-        }
+    body {
+      margin: 0;
+      background: white;
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+    }
 
-        section {
-            padding: 40px 20px;
-        }
+    .wrap {
+      width: min(1140px, calc(100% - 48px));
+      margin: auto;
+    }
 
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-        }
-    </style>
+    /* Navigation */
+    header {
+      background: white;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: bold;
+    }
+
+    .brand-mark {
+      color: var(--red);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .divider {
+      width: 1px;
+      height: 27px;
+      background: #ddd;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #434857;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    .nav-button {
+      background: var(--navy);
+      color: white;
+      padding: 13px 19px;
+      border-radius: 30px;
+    }
+
+    .nav-button:hover {
+      color: white;
+    }
+
+    /* Introduction */
+    .hero {
+      background: #f9fafb;
+      padding: 90px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      align-items: center;
+      gap: 75px;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 214px;
+      height: 214px;
+      object-fit: cover;
+      border-radius: 50%;
+      padding: 6px;
+      background: white;
+      box-shadow: 0 8px 22px #0002;
+    }
+
+    .profile h2 {
+      font-size: 26px;
+      margin: 22px 0 5px;
+    }
+
+    .school {
+      color: var(--red);
+      font-weight: bold;
+      margin: 0 0 8px;
+    }
+
+    .degree {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .tagline {
+      display: inline-block;
+      background: var(--red-soft);
+      color: #a43b45;
+      padding: 9px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 57px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin: 24px 0;
+    }
+
+    .statement {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 30px;
+      padding: 14px 22px;
+      font-weight: bold;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: white;
+    }
+
+    .button-dark {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    /* Main sections */
+    section.content {
+      padding: 85px 0;
+    }
+
+    .section-label {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin: 12px 0;
+    }
+
+    .section-description {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .skill-number {
+      background: var(--red-soft);
+      color: var(--red);
+      border-radius: 10px;
+      padding: 13px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin: 23px 0 16px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skills-list span {
+      background: #f5f6f8;
+      color: #4c5666;
+      border-radius: 6px;
+      padding: 9px 11px;
+      font-size: 12px;
+    }
+
+    /* Projects */
+    .projects-section {
+      background: #fbfbfc;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 290px;
+    }
+
+    .project-type {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .project-link {
+      margin-top: auto;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      padding-top: 20px;
+    }
+
+    .project-link:hover {
+      color: var(--red);
+    }
+
+    .project-details {
+      margin-top: 45px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    details p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .contact {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 65px 20px;
+    }
+
+    .contact p {
+      color: #c7cddd;
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 15px auto 30px;
+    }
+
+    footer {
+      background: #11182a;
+      color: #b7bece;
+      text-align: center;
+      padding: 22px;
+      font-size: 12px;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 750px) {
+      .navbar {
+        flex-direction: column;
+        padding: 20px 0;
+      }
+
+      nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-        <p>Student | Technology | Business</p>
-    </header>
+  <!-- Navigation -->
+  <header>
+    <div class="wrap navbar">
+      <a href="#about" class="brand">
+        <span class="brand-mark">Rutgers</span>
+        <span class="divider"></span>
+        <span>Navpreet's Portfolio</span>
+      </a>
 
-    <nav>
+      <nav>
         <a href="#about">About</a>
+        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
+        <a href="#projects" class="nav-button">View My Work</a>
+      </nav>
+    </div>
+  </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm a student interested in technology,
-            business analytics, and software development.
-            Welcome to my personal website!
-        </p>
-    </section>
+  <main>
 
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Project 1: Data Analytics</p>
-        <p>Project 2: Web Development</p>
-        <p>Project 3: Business Research</p>
-    </section>
+    <!-- Personal Statement -->
+    <section class="hero" id="about">
+      <div class="wrap hero-grid">
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: yourname@example.com</p>
-        <p>
-            <a href="https://github.com/" target="_blank">
-                My GitHub
+        <div class="profile">
+          <img src="headshot.jpg"
+               alt="Headshot of Navpreet Singh">
+
+          <h2>Navpreet Singh</h2>
+          <p class="school">Rutgers Business School</p>
+          <p class="degree">Business Analytics &amp; Finance</p>
+        </div>
+
+        <div>
+          <span class="tagline">
+            Business Analytics &bull; Finance &bull; Technology
+          </span>
+
+          <h1>Turning data into better business decisions.</h1>
+
+          <p class="statement">
+            I'm a Rutgers Business School student studying
+            Business Analytics and Finance, with experience in
+            technology, data analysis, and supply chain operations.
+          </p>
+
+          <div class="buttons">
+            <a href="#projects" class="button button-dark">
+              Explore My Projects &rarr;
             </a>
-        </p>
+
+            <a href="#skills" class="button">
+              See My Skills &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 My Personal Website</p>
-    </footer>
+    <!-- Skills -->
+    <section class="content" id="skills">
+      <div class="wrap">
+
+        <span class="section-label">What I bring to the table</span>
+        <h2 class="section-title">My Skills</h2>
+
+        <p class="section-description">
+          A mix of technical, analytical, and business skills
+          built through coursework and hands-on experience.
+        </p>
+
+        <div class="skills-grid">
+
+          <div class="card">
+            <span class="skill-number">01</span>
+            <h3>Data &amp; Analytics</h3>
+
+            <div class="skills-list">
+              <span>Microsoft Excel</span>
+              <span>SQL</span>
+              <span>Tableau</span>
+              <span>Data Analysis</span>
+              <span>Data Visualization</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="skill-number">02</span>
+            <h3>Supply Chain &amp; Operations</h3>
+
+            <div class="skills-list">
+              <span>Demand Forecasting</span>
+              <span>Vendor Management</span>
+              <span>Workflow Analysis</span>
+              <span>Process Improvement</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="skill-number">03</span>
+            <h3>Business &amp; Technology</h3>
+
+            <div class="skills-list">
+              <span>Business Analytics</span>
+              <span>Technical Troubleshooting</span>
+              <span>Problem Solving</span>
+              <span>Team Collaboration</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="content projects-section" id="projects">
+      <div class="wrap">
+
+        <span class="section-label">Selected Work</span>
+        <h2 class="section-title">My Projects</h2>
+
+        <p class="section-description">
+          These projects reflect how I use data, technology,
+          and problem-solving in practical situations.
+        </p>
+
+        <div class="projects-grid">
+
+          <!-- Project One -->
+          <div class="card project-card">
+            <span class="project-type">
+              Operations &bull; Internship
+            </span>
+
+            <h3>Supply Chain Workflow Analysis</h3>
+
+            <p>
+              At Ajooni AI, I reviewed delays in operational
+              workflows, including vendor handoffs and duplicate
+              uploads. I recommended improvements, including a
+              duplicate-file alert that was implemented.
+            </p>
+
+            <a class="project-link" href="#workflow-details">
+              Read project overview &rarr;
+            </a>
+          </div>
+
+          <!-- Project Two -->
+          <div class="card project-card">
+            <span class="project-type">
+              Analytics &bull; Coursework
+            </span>
+
+            <h3>Semiconductor Demand Forecasting</h3>
+
+            <p>
+              For a supply chain case study, I analyzed
+              semiconductor demand patterns and compared
+              forecasting approaches to support inventory
+              and ordering decisions.
+            </p>
+
+            <a class="project-link" href="#forecast-details">
+              Read project overview &rarr;
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Additional Project Details -->
+        <div class="project-details">
+
+          <h2>More About These Projects</h2>
+
+          <details id="workflow-details">
+            <summary>
+              Supply Chain Workflow Analysis
+            </summary>
+
+            <p>
+              I looked at where work was slowing down,
+              such as files waiting on internal reviews
+              or vendor support. I identified repeated
+              file uploads as an avoidable issue and
+              recommended an alert to flag duplicates.
+
+              That alert was later put into use.
+              This work helped me understand how small
+              process improvements can make daily
+              operations more efficient.
+            </p>
+          </details>
+
+          <details id="forecast-details">
+            <summary>
+              Semiconductor Demand Forecasting
+            </summary>
+
+            <p>
+              In my demand planning course, I worked on
+              a semiconductor case using weekly demand data.
+
+              The analysis involved comparing forecast
+              accuracy and examining how a design win
+              could affect demand, with the goal of
+              making better ordering decisions.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <h2>Thanks for stopping by.</h2>
+
+      <p>
+        I'm always interested in opportunities to learn,
+        collaborate, and work on meaningful business
+        and technology projects.
+      </p>
+
+      <a href="#about" class="button">
+        Back to Top &uarr;
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Navpreet Singh
+    &bull; Built with HTML &amp; CSS
+  </footer>
 
 </body>
 </html>
